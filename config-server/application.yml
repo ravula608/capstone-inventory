@@ -4,10 +4,15 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     prefer-ip-address: true
+spring:
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
 resilience4j:
   circuitbreaker:
     instances:
-      productService:
+      product-service:
         registerHealthIndicator: true
         slidingWindowSize: 10
         minimumNumberOfCalls: 5
@@ -18,7 +23,7 @@ resilience4j:
 
   retry:
     instances:
-      productService:
+      product-service:
         maxAttempts: 3
         waitDuration: 2s
         retryExceptions:
