@@ -9,6 +9,11 @@ spring:
     openfeign:
       circuitbreaker:
         enabled: true
+logging:
+  level:
+    io.github.resilience4j.retry: DEBUG
+    io.github.resilience4j.circuitbreaker: DEBUG
+
 resilience4j:
   circuitbreaker:
     instances:
