@@ -12,5 +12,34 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+logging:
+  level:
+    io:
+      github:
+        resilience4j:
+          retry: DEBUG
+          circuitbreaker: DEBUG
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      product-service:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+
+  retry:
+      instances:
+        product-service:
+          maxAttempts: 3
+          waitDuration: 2s
+          retryExceptions:
+            - org.springframework.web.client.ResourceAccessException
+            - java.io.IOException
 message: Order config loaded
+
 
