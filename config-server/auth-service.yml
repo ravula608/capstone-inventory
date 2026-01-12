@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/capstone_inventory
     username: root
-    #password: root
+    password: ${db.password}
   jpa:
     hibernate:
       ddl-auto: update
@@ -17,4 +17,5 @@ server:
   port: 9000
 
 message: This is from Auth-service COnfig server
+
 
